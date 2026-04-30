@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pintor em [Cidade] | [Nome do Pintor]</title>
+  <meta name="description" content="Pintor profissional em [Cidade]. Orçamento grátis e atendimento rápido." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    /* HEADER */
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .logo span { color: #C8923A; }
+
+    header a {
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 10px 22px;
+      font-weight: 500;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 960px;
+      margin: 80px auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: #FFF3E0;
+      color: #C8923A;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: #C8923A;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 28px;
+    }
+
+    .hero-image {
+      background: #f5f5f5;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px dashed #ddd;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px;
+      border-top: 1px solid #eee;
+    }
+
+    /* SERVICES */
+    .section {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 0 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      border: 1px solid #eee;
+      padding: 28px 24px;
+    }
+
+    .service-icon { font-size: 24px; margin-bottom: 12px; }
+
+    .service-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .testimonial {
+      background: #fafafa;
+      border: 1px solid #eee;
+      padding: 28px 24px;
+    }
+
+    .stars { color: #C8923A; font-size: 13px; margin-bottom: 12px; }
+
+    .testimonial-text {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .author-name { font-size: 13px; font-weight: 600; }
+    .author-location { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+    /* CTA */
+    .cta {
+      background: #1a1a1a;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #C8923A;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 40px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 13px;
+      color: #bbb;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      header { padding: 16px 20px; }
+      .hero { grid-template-columns: 1fr; margin: 40px auto; padding: 0 20px; gap: 32px; }
+      .hero-image { height: 200px; }
+      h1 { font-size: 28px; }
+      .section { padding: 0 20px; }
+      .divider { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">[Nome do Pintor] <span>·</span> Pintor</div>
+    <a href="https://wa.me/55XXXXXXXXXXX">Pedir Orçamento</a>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-tag">Pintor em [Cidade]</div>
+      <h1>Qualidade e capricho em cada parede.</h1>
+      <p class="hero-sub">Pintura residencial e comercial com material de qualidade, pontualidade e garantia no serviço.</p>
+      <a href="https://wa.me/55XXXXXXXXXXX" class="hero-btn">📲 Falar no WhatsApp</a>
+    </div>
+    <div class="hero-image">Foto do trabalho</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <h2 class="section-title">Serviços</h2>
+    <p class="section-sub">Atendemos residências e comércios em [Cidade] e região</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-name">Pintura Residencial</div>
+        <p class="service-desc">Quartos, salas, cozinhas e fachadas com acabamento impecável.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">Pintura Comercial</div>
+        <p class="service-desc">Lojas e escritórios. Trabalhamos fora do horário para não atrapalhar.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Textura e Grafiato</div>
+        <p class="service-desc">Acabamentos especiais para modernizar fachadas e ambientes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Recuperação de Fachada</div>
+        <p class="service-desc">Tratamento de trincas e infiltrações antes da pintura.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <h2 class="section-title">O que dizem nossos clientes</h2>
+    <p class="section-sub">Avaliações reais de quem já contratou</p>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Serviço impecável! Pontuais e caprichosos. Recomendo sem hesitar.</p>
+        <div class="author-name">Maria Aparecida</div>
+        <div class="author-location">[Cidade]</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Pintaram meu escritório em dois dias sem atrapalhar o funcionamento. Perfeito.</p>
+        <div class="author-name">Roberto Silva</div>
+        <div class="author-location">[Cidade]</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Fachada nova, casa transformada! Preço justo e resultado acima do esperado.</p>
+        <div class="author-name">Carla Mendes</div>
+        <div class="author-location">[Cidade]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Pronto para transformar seu espaço?</h2>
+    <p>Orçamento gratuito, rápido e sem compromisso.</p>
+    <a href="https://wa.me/55XXXXXXXXXXX">📲 Chamar no WhatsApp</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 [Nome do Pintor] · Pintura Profissional em [Cidade]
+  </footer>
+
+</body>
+</html>
