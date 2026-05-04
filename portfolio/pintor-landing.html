@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pintor em [Cidade] | [Nome do Pintor]</title>
+  <meta name="description" content="Pintor profissional em [Cidade]. Orçamento grátis, atendimento rápido e qualidade garantida. Ligue agora!" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FDFAF5;
+      --ink: #1A1612;
+      --brown: #3D2B1F;
+      --gold: #C8923A;
+      --gold-light: #E8B86D;
+      --muted: #7A6A5A;
+      --border: #DDD5C8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: var(--ink);
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 900;
+      color: var(--warm-white);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: #B0A090;
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 16px 32px;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-ghost {
+      border: 1px solid #554535;
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 15px;
+      padding: 16px 32px;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-right {
+      position: relative;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #D4C4B0 0%, #B8A898 50%, #9A8878 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 30px,
+          rgba(255,255,255,0.03) 30px,
+          rgba(255,255,255,0.03) 31px
+        );
+    }
+
+    .placeholder-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      display: flex;
+      gap: 40px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #887060;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--gold);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.5px;
+    }
+
+    .strip-item svg { flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.15;
+      margin-bottom: 60px;
+      max-width: 520px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--warm-white);
+      padding: 48px 36px;
+      position: relative;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .service-card:hover { background: var(--cream); }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 22px;
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      background: var(--ink);
+      padding: 100px 40px;
+    }
+
+    .process-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .process-section .section-title {
+      color: var(--cream);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: #3A302A;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-weight: 500;
+      color: var(--cream);
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: #887060;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .testimonial {
+      border: 1px solid var(--border);
+      padding: 36px;
+      position: relative;
+      background: var(--warm-white);
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: var(--gold);
+      position: absolute;
+      top: 10px;
+      left: 28px;
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--brown);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 24px;
+      margin-top: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .author-name {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .author-location {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--cream);
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: 'ORÇAMENTO';
+      font-family: 'Playfair Display', serif;
+      font-size: 180px;
+      font-weight: 900;
+      color: rgba(0,0,0,0.04);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .cta-section .section-title {
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--brown);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #554535;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left > * {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-badge { animation-delay: 0.1s; }
+    .hero-title { animation-delay: 0.25s; }
+    .hero-subtitle { animation-delay: 0.4s; }
+    .hero-cta { animation-delay: 0.55s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-left {
+        padding: 60px 28px;
+      }
+
+      .hero-left::after { display: none; }
+
+      .hero-right {
+        height: 260px;
+      }
+
+      .hero-stats {
+        position: static;
+        margin-top: 40px;
+        gap: 24px;
+      }
+
+      .section { padding: 60px 24px; }
+
+      .process-steps::before { display: none; }
+
+      .cta-section { padding: 60px 24px; }
+
+      .strip { gap: 20px; padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">Pintor Profissional · [Cidade]</div>
+      <h1 class="hero-title">
+        Qualidade que
+        <span>transforma</span>
+        ambientes.
+      </h1>
+      <p class="hero-subtitle">
+        Pintura residencial e comercial com acabamento impecável. Atendemos em [Cidade] e região com pontualidade e material de primeira.
+      </p>
+      <div class="hero-cta">
+        <a href="https://wa.me/55XXXXXXXXXXX" class="btn-primary">Pedir Orçamento Grátis</a>
+        <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">+200</span>
+          <span class="stat-label">Obras feitas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Anos de experiência</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Garantia</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image-placeholder">
+        <div class="placeholder-text">Foto do trabalho<br/>aqui</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Orçamento grátis e sem compromisso
+    </div>
+    <div class="strip-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Atendimento em até 24h
+    </div>
+    <div class="strip-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Material de qualidade incluído
+    </div>
+    <div class="strip-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      Garantia no serviço
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div id="servicos" class="section">
+    <p class="section-label">O que fazemos</p>
+    <h2 class="section-title">Serviços para cada tipo de espaço</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-name">Pintura Residencial</div>
+        <p class="service-desc">Quartos, salas, fachadas e áreas externas. Renovamos sua casa com cuidado e capricho no acabamento.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">Pintura Comercial</div>
+        <p class="service-desc">Lojas, escritórios e galpões. Trabalhamos fora do horário comercial para não atrapalhar seu negócio.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Textura e Grafiato</div>
+        <p class="service-desc">Acabamentos especiais para fachadas e ambientes internos. Valoriza e moderniza qualquer espaço.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Recuperação de Fachada</div>
+        <p class="service-desc">Tratamento de infiltrações, trincas e reparo antes da pintura. Serviço completo do diagnóstico ao acabamento.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="process-inner">
+      <p class="section-label" style="color: var(--gold);">Como funciona</p>
+      <h2 class="section-title">Do contato à obra pronta</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-title">Você entra em contato</div>
+          <p class="step-desc">Pelo WhatsApp ou telefone, sem compromisso.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-title">Visita e orçamento</div>
+          <p class="step-desc">Vamos até você, avaliamos e enviamos orçamento no mesmo dia.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Agendamos a obra</div>
+          <p class="step-desc">Definimos a data e chegamos no horário combinado.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Entrega com garantia</div>
+          <p class="step-desc">Obra finalizada com limpeza do local e garantia por escrito.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <p class="section-label">Avaliações</p>
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Serviço impecável! Pontuais, caprichosos e deixaram o ambiente limpo. Com certeza recomendo para toda a família.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Maria Aparecida</div>
+            <div class="author-location">[Cidade]</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Pintaram o meu escritório inteiro em dois dias, sem atrapalhar o funcionamento. Acabamento perfeito, muito satisfeito.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Roberto Silva</div>
+            <div class="author-location">[Cidade]</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Fachada nova, casa transformada! Preço justo e resultado acima do esperado. Já chamei de volta para a parte interna.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <div class="author-name">Carla Mendes</div>
+            <div class="author-location">[Cidade]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <p class="section-label">Fale conosco</p>
+    <h2 class="section-title">Pronto para transformar seu espaço?</h2>
+    <p style="color: var(--muted); font-size: 15px; font-weight: 300;">Orçamento gratuito, rápido e sem compromisso. Atendemos em [Cidade] e região.</p>
+    <br/>
+    <a href="https://wa.me/55XXXXXXXXXXX" class="btn-primary" style="font-size: 17px; padding: 20px 48px;">
+      📲 Chamar no WhatsApp
+    </a>
+    <div class="cta-contact">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Telefone</div>
+          <div style="font-weight: 500;">(XX) XXXXX-XXXX</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Atendemos em</div>
+          <div style="font-weight: 500;">[Cidade] e região</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div style="font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Horário</div>
+          <div style="font-weight: 500;">Seg–Sáb, 7h às 18h</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>[Nome do Pintor]</span> · Pintura Profissional em [Cidade] · Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>
